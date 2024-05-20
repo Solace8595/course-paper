@@ -1,80 +1,240 @@
 ﻿using System.Collections;
-using System;
-using System.Threading.Tasks;
-using Telegram.Bot;
-using Telegram.Bot.Exceptions;
-using Telegram.Bot.Polling;
-using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types;
 using System.Threading;
+using Telegram.Bot;
+using Telegram.Bot.Args;
+using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
-
 namespace Курсовая
 {
+    //Объявления делегата для отправки сообщений и меню
+    public delegate Task SendMessageDelegate(ITelegramBotClient botClient, long chatId, string text, IReplyMarkup replyMarkup);
     public class Program
     {
-        private static async Task Main(string[] args)
+        //Запоминание последней команды
+        private class UserState
         {
-            var botClient = new TelegramBotClient("7085153126:AAFEVPuuMKbIubl60qBuIISP3Ogo6vkQpUw");
+            public string LastCommand { get; set; }
+        }
 
-            Message message = await botClient.SendTextMessageAsync(
-     chatId: chatId,
-     text: "Trying *all the parameters* of `sendMessage` method",
-     parseMode: ParseMode.MarkdownV2,
-     disableNotification: true,
-     replyToMessageId: update.Message.MessageId,
-     replyMarkup: new InlineKeyboardMarkup(
-         InlineKeyboardButton.WithUrl(
-             text: "Check sendMessage method",
-             url: "https://core.telegram.org/bots/api#sendmessage")),
-     cancellationToken: cancellationToken);
+        //Создание словаря для многопользовательского интерфейса
+        private static readonly Dictionary<long, UserState> userStates = new Dictionary<long, UserState>();
 
-            //var me = await botClient.GetMeAsync();
-            //Console.WriteLine($"Hello, World! I am user {me.Id} and my name is {me.FirstName}.");
+        //Метод для делегата
+        private async static Task SendMessage(ITelegramBotClient botClient, long chatId, string text, IReplyMarkup replyMarkup)
+        {
+            await botClient.SendTextMessageAsync(chatId, text, replyMarkup: replyMarkup);
+        }
+
+        async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
+        {
+            SendMessageDelegate sendMessage = SendMessage;
+            var message = update.Message;
+            if (message.Text != null)
+            {
+                var chatId = message.Chat.Id;
+
+                if (!userStates.ContainsKey(chatId))
+                {
+                    userStates[chatId] = new UserState();
+                }
+
+                var userState = userStates[chatId];
+
+                switch (message.Text)
+                {
+                    case "/start":
+                    case "Вернуться к выбору типа активности":
+                        {
+                            await sendMessage(botClient, chatId, "Выберите тип активности:", GetButtonsType());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                    case "Вернуться к выбору времени суток":
+                        {
+                            await sendMessage(botClient, chatId, "Выберите время суток:", GetButtonsTime());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                    case "Активность":
+                        {
+                            await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите время суток:", replyMarkup: GetButtonsTime());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                    case "Прогулки":
+                        {
+                            await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите время суток:", replyMarkup: GetButtonsTime());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                    case "Экскурсии":
+                        {
+                            await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите время суток:", replyMarkup: GetButtonsTime());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                    case "Выезд за пределы города":
+                        {
+                            await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите время суток:", replyMarkup: GetButtonsTime());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                    case "Досуг с детьми":
+                        {
+                            await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите время суток:", replyMarkup: GetButtonsTime());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                    case "Помощь":
+                        {
+                            await botClient.SendTextMessageAsync(message.Chat.Id, "ЖЁСТКО ПОМОГАЕМ", replyMarkup: GetHelpButtons());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                    case "Утро или день":
+                        {
+                            if (userState.LastCommand == "Активность")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Активность - Утро или день", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Прогулки")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Прогулки - Утро или день", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Экскурсии")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Экскурсии - Утро или день", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Выезд за пределы города")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Выезд за пределы города - Утро или день", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Досуг с детьми")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Досуг с детьми - Утро или день", replyMarkup: GetButtonsReturn());
+                            }
+                            return;
+                        }
+                    case "Вечер":
+                        {
+                            if (userState.LastCommand == "Активность")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Активность - Вечер", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Прогулки")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Прогулки - Вечер", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Экскурсии")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Экскурсии - Вечер", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Выезд за пределы города")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Выезд за пределы города - Вечер", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Досуг с детьми")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Досуг с детьми - Вечер", replyMarkup: GetButtonsReturn());
+                            }
+                            return;
+                        }
+                    case "Весь день":
+                        {
+                            if (userState.LastCommand == "Активность")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Активность - Весь день", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Прогулки")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Прогулки - Весь день", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Экскурсии")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Экскурсии - Весь день", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Выезд за пределы города")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Выезд за пределы города - Весь день", replyMarkup: GetButtonsReturn());
+                            }
+                            if (userState.LastCommand == "Досуг с детьми")
+                            {
+                                await botClient.SendTextMessageAsync(message.Chat.Id, "Вы выбрали Досуг с детьми - Весь день", replyMarkup: GetButtonsReturn());
+                            }
+                            return;
+                        }
+                    default:
+                        {
+                            await botClient.SendTextMessageAsync(message.Chat.Id, "Данной команды не существует, вы возвращены в меню выбора типа активности", replyMarkup: GetButtonsType());
+                            userState.LastCommand = message.Text;
+                            return;
+                        }
+                }
+            }
+        }
+
+        private static IReplyMarkup GetButtonsReturn()
+        {
+            var keyboard = new List<List<KeyboardButton>>
+                {
+                    new List<KeyboardButton> { new KeyboardButton ("Вернуться к выбору времени суток") },
+                    new List<KeyboardButton> { new KeyboardButton ("Вернуться к выбору типа активности") },
+                    new List<KeyboardButton> { new KeyboardButton ("Помощь") }
+
+                };
+            return new ReplyKeyboardMarkup(keyboard);
+        }
 
 
-            //var client = new TelegramBotClient("7085153126:AAFEVPuuMKbIubl60qBuIISP3Ogo6vkQpUw");
+        private static IReplyMarkup GetHelpButtons()
+        {
+            var keyboard = new List<List<KeyboardButton>>
+    {
+        new List<KeyboardButton> { new KeyboardButton ("Кнопка 1"), new KeyboardButton ("Кнопка 2") },
+        new List<KeyboardButton> { new KeyboardButton ("Кнопка 3") }
+    };
 
-            //client.OnMessage += async (sender, e) =>
-            //{
-            //    if (e.Message.Text == "/start")
-            //    {
-            //        // Create keyboard buttons
-            //        var keyboardButtons = new List<KeyboardButton[]>()
-            //        {
-            //            new KeyboardButton[] { "утро/день" },
-            //            new KeyboardButton[] { "вечер" },
-            //            new KeyboardButton[] { "весь день" },
-            //        };
+            return new ReplyKeyboardMarkup(keyboard);
+        }
 
-            //        // Create reply keyboard markup
-            //        var replyKeyboardMarkup = new ReplyKeyboardMarkup(keyboardButtons)
-            //        {
-            //            ResizeKeyboard = true, // Allow keyboard to resize
-            //            OneTimeKeyboard = true // Hide keyboard after user selects an option
-            //        };
+        private static IReplyMarkup GetButtonsTime()
+        {
+            var keyboard = new List<List<KeyboardButton>>
+                {
+                    new List<KeyboardButton> { new KeyboardButton ("Утро или день"), new KeyboardButton ("Вечер"), new KeyboardButton ("Весь день") },
+                    new List<KeyboardButton> { new KeyboardButton ("Вернуться к выбору типа активности") },
+                      new List<KeyboardButton> { new KeyboardButton ("Помощь") }
+                };
+            return new ReplyKeyboardMarkup(keyboard);
+        }
 
-            //        // Send message with keyboard
-            //        await client.SendTextMessageAsync(
-            //            chatId: e.Message.Chat.Id,
-            //            text: "Выберите время суток",
-            //            replyMarkup: replyKeyboardMarkup
-            //        );
-            //    }
-            //    else
-            //    {
-            //        // Handle user's button selection
-            //        string selectedTime = e.Message.Text;
-            //        // ... (process selected time)
-            //    }
-            //};
+        private static IReplyMarkup GetButtonsType()
+        {
 
-            //client.StartReceiving();
-            //Console.ReadLine();
-            //client.StopReceiving();
+            var keyboard = new List<List<KeyboardButton>>
+                {
+                    new List<KeyboardButton> { new KeyboardButton ("Активность"), new KeyboardButton ("Прогулки") },
+                    new List<KeyboardButton> { new KeyboardButton ("Экскурсии"), new KeyboardButton ("Выезд за пределы города"), new KeyboardButton ("Досуг с детьми") },
+                    new List<KeyboardButton> { new KeyboardButton ("Помощь") }
+                };
+            return new ReplyKeyboardMarkup(keyboard);
+        }
+        private static async Task Error(ITelegramBotClient client, Exception exception, CancellationToken token)
+        {
+            Console.WriteLine($"Ошибка: {exception.Message}");
+        }
+        static void Main(string[] args)
+        {
+            var client = new TelegramBotClient("7085153126:AAFEVPuuMKbIubl60qBuIISP3Ogo6vkQpUw");
+            client.StartReceiving(Update, Error, null);
+            Console.ReadLine();
+
+
+
+
 
             //Активности
-            ArrayList arrActivities = new ArrayList(47);
+            ArrayList arrActivities = new ArrayList(48);
             //0
             arrActivities.Add(new Activity("Пермский цирк", "ссылка1", "утро/день", "досуг с детьми", "информация1", 6));
             //1
@@ -169,6 +329,8 @@ namespace Курсовая
             arrActivities.Add(new Activity("Картинг KartON", "ссылка1", "утро/день и вечер", "активности", "информация1", 6));
             //46
             arrActivities.Add(new Activity("Пермские термы", "ссылка1", "весь день", "выезд", "информация1", 6));
+            //47
+            arrActivities.Add(new Activity("Экскурсия Пермь мистическая", "ссылка1", "вечер", "экскурсия", "информация1", 6));
 
 
             //Кафе
@@ -186,5 +348,11 @@ namespace Курсовая
             //5
             arrCafes.Add(new Cafe("Котокафе", "ссылка1", "утро/день и вечер", "с детьми и без детей", "информация1", 6));
         }
+
+
+
+
     }
 }
+//GPT - многопользовательская поддержка - как учесть предыдущую кнопку
+// правки: добавить делегаты и linq запросы

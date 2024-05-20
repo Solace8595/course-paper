@@ -16,3 +16,4 @@ D:\Курсовая\course-paper\Курсовая\obj\Debug\net8.0\refint\Кур
 D:\Курсовая\course-paper\Курсовая\obj\Debug\net8.0\Курсовая.pdb
 D:\Курсовая\course-paper\Курсовая\obj\Debug\net8.0\Курсовая.genruntimeconfig.cache
 D:\Курсовая\course-paper\Курсовая\obj\Debug\net8.0\ref\Курсовая.dll
+D:\Курсовая\course-paper\Курсовая\obj\Debug\net8.0\Курсовая.sourcelink.json
