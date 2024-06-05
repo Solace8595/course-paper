@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -32,10 +32,23 @@
               "RelativeDocumentMoniker": "Activity.cs",
               "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Activity.cs",
               "RelativeToolTip": "Activity.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAYwBkAAAAAAAAA",
+              "ViewState": "AQIAAG0AAAAAAAAAAAAkwMUAAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T19:48:40.228Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAANQAAAAAAAAAAAAuwKwAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-06T19:25:31.979Z",
               "EditorCaption": ""
             },
             {
@@ -46,22 +59,28 @@
               "RelativeDocumentMoniker": "Cafe.cs",
               "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Cafe.cs",
               "RelativeToolTip": "Cafe.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAABwAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T11:59:20.908Z"
+              "WhenOpened": "2024-05-07T11:59:20.908Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1524,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{320fd13f-632f-4b16-9527-a1adfe555f6c}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAIABAAAAAAAAAAAAAJABAAB/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T19:25:31.979Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
