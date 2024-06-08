@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\cafe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:cafe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\cafearray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:cafearray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\activityarray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:activityarray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,46 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Activity.cs",
-              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Activity.cs",
-              "RelativeDocumentMoniker": "Activity.cs",
-              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Activity.cs",
-              "RelativeToolTip": "Activity.cs",
-              "ViewState": "AQIAACoAAAAAAAAAAAAtwD4AAACbAAAA",
+              "DocumentIndex": 0,
+              "Title": "Place.cs",
+              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Place.cs",
+              "RelativeDocumentMoniker": "Place.cs",
+              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Place.cs",
+              "RelativeToolTip": "Place.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAUwCsAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T19:48:40.228Z",
-              "IsPinned": true,
+              "WhenOpened": "2024-05-07T11:59:20.908Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAADECAAAAAAAAAAAtwBwCAABFAAAA",
+              "DocumentIndex": 2,
+              "Title": "CafeArray.cs",
+              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\CafeArray.cs",
+              "RelativeDocumentMoniker": "CafeArray.cs",
+              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\CafeArray.cs",
+              "RelativeToolTip": "CafeArray.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T19:25:31.979Z",
+              "WhenOpened": "2024-06-08T10:55:12.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ActivityArray.cs",
+              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\ActivityArray.cs",
+              "RelativeDocumentMoniker": "ActivityArray.cs",
+              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\ActivityArray.cs",
+              "RelativeToolTip": "ActivityArray.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAADGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-08T10:53:52.876Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Cafe.cs",
-              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Cafe.cs",
-              "RelativeDocumentMoniker": "Cafe.cs",
-              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Cafe.cs",
-              "RelativeToolTip": "Cafe.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAuwDwAAACcAQAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAA8CAAAAAAAAAAAIwBgCAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T11:59:20.908Z",
+              "WhenOpened": "2024-05-06T19:25:31.979Z",
               "EditorCaption": ""
             }
           ]

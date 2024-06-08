@@ -1,50 +1,22 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Курсовая
 {
-    public class Activity
-    {
-        public string name, link, time, type, information, picture;
-        public int cost;
-        public Activity(string name, string link, string time, string type, string information, int cost, string picture)  // конструктор с параметрами
-        {
-            this.name = name;
-            this.link = link;
-            this.time = time;
-            this.type = type;
-            this.information = information;
-            this.cost = cost;
-            this.picture = picture;
-        }
-        public override string ToString()
-        {
-            return $"{name}\n" +
-                "\n" +
-                   $"Ссылка на сайт с информацией: {link}\n" +
-                    "\n" +
-                   $"{information}\n" +
-                    "\n" +
-                   $"Стоимость: {cost}\n";
-        }
-        public Activity() { }
-    }
     public class ActivityArray
     {
         public static List<Activity> allActs = new List<Activity>
     {
         //Активности
-        //0
-       new Activity("Пермский цирк", "https://www.circus-perm.ru/", "утро/день", "досуг с детьми", "Цирк - это захватывающее зрелище, где искусные артисты исполняют" +
+            //0
+            new Activity("Пермский цирк", "https://www.circus-perm.ru/", "утро/день", "досуг с детьми", "Цирк - это захватывающее зрелище, где искусные артисты исполняют" +
                 " удивительные трюки, поражающие воображение зрителей. Каждое представление - это яркий праздник, полный смеха, удивления и " +
                 "восторга.", 3000, "https://schools11kiz.ru/images/p146_kp41rl5tixc.jpg"),
             //1
-           new Activity("Парк Горького", "https://www.parkperm.ru/", "утро/день и вечер", "досуг с детьми и активности", "Пермский парк Горького" +
+            new Activity("Парк Горького", "https://www.parkperm.ru/", "утро/день и вечер", "досуг с детьми и активности", "Пермский парк Горького" +
                 " - это зеленый оазис в центре Перми, идеальное место для отдыха и развлечений. Здесь можно прогуляться по живописным аллеям, насладиться аттракционами " +
                 "и посетить разнообразные культурные мероприятия. Стоимость рассчитана на 2-х человек примерно на 4-5 аттракционов.", 4000, "https://sun9-25.userapi.com/impg/W-5K" +
                "1q7Nz1_YM5LukhxrmC4w4ndFILx5DdugoA/FS7i2G88Eh4.jpg?size=1080x719&quality=95&sign=e3a2e11d70aba1b7db0f7671e6868687&c_uniq_tag=3fJKN41NNqO9_csuTew_Ihsgr6lQ9NZONIYRa8XZRU0&type=album"),

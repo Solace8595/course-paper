@@ -17,9 +17,9 @@ namespace Курсовая
         {
             public string? LastCommand { get; set; }
             public Activity? RndAct { get; set; }
-            public Cafe? RndCafe { get; set; }
+            public Place? RndCafe { get; set; }
             public List<Activity> acts { get; set; } = new List<Activity>();
-            public List<Cafe> cafes { get; set; } = new List<Cafe> { };
+            public List<Place> cafes { get; set; } = new List<Place> { };
         }
 
         //Создание словаря для многопользовательского интерфейса
@@ -41,12 +41,12 @@ namespace Курсовая
         }
 
         //Фильтрация кафе
-        public static List<Cafe> FilteredCafes(string time, string type)
+        public static List<Place> FilteredCafes(string time, string type)
         {
-            List<Cafe> cafes = new List<Cafe>();
+            List<Place> cafes = new List<Place>();
             for (int i = 0; i < CafeArray.allCafes.Count; i++)
             {
-                Cafe cafe = CafeArray.allCafes[i];
+                Place cafe = CafeArray.allCafes[i];
                 if (cafe.time.Contains(time) && cafe.type.Contains(type))
                 {
                     cafes.Add(cafe);
@@ -58,12 +58,6 @@ namespace Курсовая
         //Отправка скомбинированной текст + фото активности
         async static Task SendActivityWithPhotoAsync(ITelegramBotClient botClient, long chatId, Activity activity)
         {
-            if (activity == null)
-            {
-                await botClient.SendTextMessageAsync(chatId, "Рекомендации не найдены, перезапустите бота командой /start");
-                return;
-            }
-
             string messageText = activity.ToString();
             if (!string.IsNullOrEmpty(messageText))
             {
@@ -77,14 +71,8 @@ namespace Курсовая
         }
 
         //Отправка скомбинированной текст + фото активности
-        async static Task SendCafeWithPhotoAsync(ITelegramBotClient botClient, long chatId, Cafe cafe)
+        async static Task SendCafeWithPhotoAsync(ITelegramBotClient botClient, long chatId, Place cafe)
         {
-            if (cafe == null)
-            {
-                await botClient.SendTextMessageAsync(chatId, "Рекомендации не найдены, перезапустите бота командой /start");
-                return;
-            }
-
             string messageText = cafe.ToString();
 
             if (!string.IsNullOrEmpty(messageText))
@@ -135,6 +123,9 @@ namespace Курсовая
                                 if (userState.RndAct != null && userState.RndCafe != null)
                                 {
                                     sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                    await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                    await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                 }
                                 else
                                 {
@@ -146,8 +137,6 @@ namespace Курсовая
                                 await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                             }
 
-                            await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                            await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                             string combinedMessage = $"Итоговая сумма: {sum}";
                             await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -158,12 +147,12 @@ namespace Курсовая
                             if (userState.acts.Count > 0)
                             {
                                 userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
+                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
                             }
                             else
                             {
                                 await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                             }
-                            await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
 
                             string combinedMessage = $"Итоговая сумма: {userState.RndAct.cost}";
                             await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsReturn());
@@ -178,6 +167,9 @@ namespace Курсовая
                                 if (userState.RndAct != null && userState.RndCafe != null)
                                 {
                                     sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                    await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                    await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                 }
                                 else
                                 {
@@ -189,8 +181,6 @@ namespace Курсовая
                                 await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                             }
 
-                            await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                            await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                             string combinedMessage = $"Итоговая сумма: {sum}";
                             await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -205,6 +195,9 @@ namespace Курсовая
                                 if (userState.RndAct != null && userState.RndCafe != null)
                                 {
                                     sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                    await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                    await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                 }
                                 else
                                 {
@@ -216,8 +209,6 @@ namespace Курсовая
                                 await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены. Рекомендации не найдены, перезапустите бота командой /start\"");
                             }
 
-                            await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                            await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                             string combinedMessage = $"Итоговая сумма: {sum}";
                             await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -250,16 +241,16 @@ namespace Курсовая
                         {
                             userState.acts = FilteredActivities("весь день", "выезд");
 
-                            if (userState.acts.Count > 0)
+                            if (userState.acts.Count > 0 && userState.acts != null)
                             {
                                 userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
+                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
                             }
                             else
                             {
                                 await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                             }
 
-                            await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
 
                             string combinedMessage = $"Итоговая сумма: {userState.RndAct.cost}";
                             await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsReturn());
@@ -298,6 +289,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -308,9 +302,6 @@ namespace Курсовая
                                 {
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
-
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -329,6 +320,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -339,9 +333,6 @@ namespace Курсовая
                                 {
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
-
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -360,6 +351,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -370,9 +364,6 @@ namespace Курсовая
                                 {
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
-
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -391,6 +382,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -401,9 +395,6 @@ namespace Курсовая
                                 {
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
-
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -425,6 +416,8 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -435,9 +428,6 @@ namespace Курсовая
                                 {
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
-
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -456,6 +446,8 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -467,7 +459,7 @@ namespace Курсовая
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
 
-                                string combinedMessage = $"{userState.RndAct} {userState.RndCafe}\n\n Итоговая сумма: {sum}";
+                                string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
                             }
 
@@ -484,6 +476,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -495,8 +490,6 @@ namespace Курсовая
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
 
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -515,6 +508,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -526,8 +522,6 @@ namespace Курсовая
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
 
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -549,6 +543,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -560,8 +557,6 @@ namespace Курсовая
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
 
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -580,6 +575,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -590,9 +588,6 @@ namespace Курсовая
                                 {
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
-
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -611,6 +606,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -621,9 +619,6 @@ namespace Курсовая
                                 {
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
-
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
@@ -642,6 +637,9 @@ namespace Курсовая
                                     if (userState.RndAct != null && userState.RndCafe != null)
                                     {
                                         sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
+                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
                                     }
                                     else
                                     {
@@ -653,8 +651,6 @@ namespace Курсовая
                                     await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
                                 }
 
-                                await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
 
                                 string combinedMessage = $"Итоговая сумма: {sum}";
                                 await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
