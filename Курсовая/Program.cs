@@ -415,7 +415,7 @@ namespace Курсовая
             var keyboard = new List<List<KeyboardButton>>
                 {
                     new List<KeyboardButton> { new KeyboardButton ("Другой вариант поездки") },
-                    new List<KeyboardButton> { new KeyboardButton ("Помощь"), new KeyboardButton("Вернуться к выбору времени суток"), new KeyboardButton("Вернуться к выбору типа активности") }
+                    new List<KeyboardButton> { new KeyboardButton ("Помощь"), new KeyboardButton("Вернуться к выбору типа активности") }
 
                 };
             return new ReplyKeyboardMarkup(keyboard);
