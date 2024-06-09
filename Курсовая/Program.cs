@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Threading;
@@ -54,6 +55,37 @@ namespace Курсовая
             }
             return cafes;
         }
+        //Комбинирование всех функций для уменьшения количества строк кода
+        async static Task CombineFunc(ITelegramBotClient botClient, long chatId, UserState userState, Random random, string time, string type)
+        {
+            userState.acts = FilteredActivities(time, type);
+            userState.cafes = FilteredCafes(time, type);
+
+            if (userState.acts.Count > 0 && userState.cafes.Count > 0)
+            {
+                userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
+                userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
+
+                if (userState.RndAct != null && userState.RndCafe != null)
+                {
+                    int sum = userState.RndAct.cost + userState.RndCafe.cost;
+
+                    await SendActivityWithPhotoAsync(botClient, chatId, userState.RndAct);
+                    await SendCafeWithPhotoAsync(botClient, chatId, userState.RndCafe);
+
+                    string combinedMessage = $"Итоговая сумма: {sum}";
+                    await botClient.SendTextMessageAsync(chatId, combinedMessage, replyMarkup: GetButtonsVariants());
+                }
+                else
+                {
+                    await botClient.SendTextMessageAsync(chatId, "Рекомендации не найдены, перезапустите бота командой /start");
+                }
+            }
+            else
+            {
+                await botClient.SendTextMessageAsync(chatId, "Рекомендации не найдены, перезапустите бота командой /start");
+            }
+        }
 
         //Отправка скомбинированной текст + фото активности
         async static Task SendActivityWithPhotoAsync(ITelegramBotClient botClient, long chatId, Activity activity)
@@ -94,6 +126,17 @@ namespace Курсовая
             
 
             Message message = update.Message;
+            //if (message == null || update.Message == null)
+            //{
+            //    Console.WriteLine("Ошибка");
+            //    return;
+            //}
+
+            //if (message.Text == null)
+            //{
+            //    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
+            //    return; // Выход из метода, если message.Text равен null
+            //}
             if (message.Text != null)
             {
                 long chatId = message.Chat.Id;
@@ -139,7 +182,7 @@ namespace Курсовая
 
 
                             string combinedMessage = $"Итоговая сумма: {sum}";
-                            await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                            await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());                           
                             return;
                         }
                     case "Другой вариант поездки":
@@ -278,126 +321,22 @@ namespace Курсовая
                         {
                             if (userState.LastCommand == "Активность")
                             {
-                                userState.acts = FilteredActivities("утро/день", "активности");
-                                userState.cafes = FilteredCafes("утро/день", "активности");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "утро/день", "активности");
                             }
 
                             if (userState.LastCommand == "Прогулки")
                             {
-                                userState.acts = FilteredActivities("утро/день", "прогулка");
-                                userState.cafes = FilteredCafes("утро/день", "прогулка");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "утро/день", "прогулка");
                             }
 
                             if (userState.LastCommand == "Экскурсии")
                             {
-                                userState.acts = FilteredActivities("утро/день", "экскурсии");
-                                userState.cafes = FilteredCafes("утро/день", "экскурсии");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "утро/день", "экскурсии");
                             }
 
                             if (userState.LastCommand == "Досуг с детьми")
                             {
-                                userState.acts = FilteredActivities("утро/день", "досуг с детьми");
-                                userState.cafes = FilteredCafes("утро/день", "досуг с детьми");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "утро/день", "досуг с детьми");
                             }
                             return;
                         }
@@ -405,126 +344,22 @@ namespace Курсовая
                         {
                             if (userState.LastCommand == "Активность")
                             {
-                                userState.acts = FilteredActivities("вечер", "активности");
-                                userState.cafes = FilteredCafes("вечер", "активности");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "вечер", "активности");
                             }
 
                             if (userState.LastCommand == "Прогулки")
                             {
-                                userState.acts = FilteredActivities("вечер", "прогулка");
-                                userState.cafes = FilteredCafes("вечер", "прогулка");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "вечер", "прогулка");
                             }
 
                             if (userState.LastCommand == "Экскурсии")
                             {
-                                userState.acts = FilteredActivities("вечер", "экскурсии");
-                                userState.cafes = FilteredCafes("вечер", "экскурсии");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "вечер", "экскурсии");
                             }
 
                             if (userState.LastCommand == "Досуг с детьми")
                             {
-                                userState.acts = FilteredActivities("вечер", "досуг с детьми");
-                                userState.cafes = FilteredCafes("вечер", "досуг с детьми");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "вечер", "досуг с детьми");
                             }
                             return;
                         }
@@ -532,128 +367,22 @@ namespace Курсовая
                         {
                             if (userState.LastCommand == "Активность")
                             {
-                                userState.acts = FilteredActivities("весь день", "активности");
-                                userState.cafes = FilteredCafes("весь день", "активности");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "весь день", "активности");
                             }
 
                             if (userState.LastCommand == "Прогулки")
                             {
-                                userState.acts = FilteredActivities("весь день", "прогулка");
-                                userState.cafes = FilteredCafes("весь день", "прогулка");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "весь день", "прогулка");
                             }
 
                             if (userState.LastCommand == "Экскурсии")
                             {
-                                userState.acts = FilteredActivities("весь день", "экскурсии");
-                                userState.cafes = FilteredCafes("весь день", "экскурсии");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "весь день", "экскурсии");
                             }
 
                             if (userState.LastCommand == "Досуг с детьми")
                             {
-                                userState.acts = FilteredActivities("весь день", "досуг с детьми");
-                                userState.cafes = FilteredCafes("весь день", "досуг с детьми");
-
-                                if (userState.acts.Count > 0 && userState.cafes.Count > 0)
-                                {
-                                    userState.RndAct = userState.acts[random.Next(userState.acts.Count)];
-                                    userState.RndCafe = userState.cafes[random.Next(userState.cafes.Count)];
-
-                                    if (userState.RndAct != null && userState.RndCafe != null)
-                                    {
-                                        sum = userState.RndAct.cost + userState.RndCafe.cost;
-
-                                        await SendActivityWithPhotoAsync(botClient, message.Chat.Id, userState.RndAct);
-                                        await SendCafeWithPhotoAsync(botClient, message.Chat.Id, userState.RndCafe);
-                                    }
-                                    else
-                                    {
-                                        await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                    }
-                                }
-                                else
-                                {
-                                    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-                                }
-
-
-                                string combinedMessage = $"Итоговая сумма: {sum}";
-                                await botClient.SendTextMessageAsync(message.Chat.Id, combinedMessage, replyMarkup: GetButtonsVariants());
+                                await CombineFunc(botClient, message.Chat.Id, userState, random, "весь день", "досуг с детьми");
                             }
                             return;
                         }
