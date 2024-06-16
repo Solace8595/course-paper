@@ -126,17 +126,6 @@ namespace Курсовая
             
 
             Message message = update.Message;
-            //if (message == null || update.Message == null)
-            //{
-            //    Console.WriteLine("Ошибка");
-            //    return;
-            //}
-
-            //if (message.Text == null)
-            //{
-            //    await botClient.SendTextMessageAsync(message.Chat.Id, "Рекомендации не найдены, перезапустите бота командой /start");
-            //    return; // Выход из метода, если message.Text равен null
-            //}
             if (message.Text != null)
             {
                 long chatId = message.Chat.Id;
@@ -471,6 +460,3 @@ namespace Курсовая
         }       
     }
 }
-
-
-//GPT - многопользовательская поддержка - как учесть предыдущую кнопку
