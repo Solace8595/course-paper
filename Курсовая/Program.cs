@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Threading;
-using System.Timers;
-using Telegram.Bot;
-using Telegram.Bot.Args;
+﻿using Telegram.Bot;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Курсовая

@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\activityarray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:activityarray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\cafearray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:cafearray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
+      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|d:\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CB5F6BB-8A3D-4367-B795-D5F93F1C501A}|\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F.csproj|solutionrelative:place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +34,18 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "ClassDiagram1.cd",
+              "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\ClassDiagram1.cd",
+              "RelativeDocumentMoniker": "ClassDiagram1.cd",
+              "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\ClassDiagram1.cd",
+              "RelativeToolTip": "ClassDiagram1.cd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000463|",
+              "WhenOpened": "2024-06-16T16:08:55.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Place.cs",
               "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Place.cs",
               "RelativeDocumentMoniker": "Place.cs",
@@ -38,44 +53,43 @@
               "RelativeToolTip": "Place.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAADcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T11:59:20.908Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-07T11:59:20.908Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "CafeArray.cs",
               "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\CafeArray.cs",
               "RelativeDocumentMoniker": "CafeArray.cs",
               "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\CafeArray.cs",
               "RelativeToolTip": "CafeArray.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAJAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwA0AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-08T10:55:12.454Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ActivityArray.cs",
               "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\ActivityArray.cs",
               "RelativeDocumentMoniker": "ActivityArray.cs",
               "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\ActivityArray.cs",
               "RelativeToolTip": "ActivityArray.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAPAAAABXAAAA",
+              "ViewState": "AQIAAH0AAAAAAAAAAAAYwJIAAACqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-08T10:53:52.876Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\course-paper\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAALQBAAAAAAAAAAAmwM0BAAABAAAA",
+              "ViewState": "AQIAAEIBAAAAAAAAAAAAAHMBAACcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T19:25:31.979Z",
               "EditorCaption": ""
